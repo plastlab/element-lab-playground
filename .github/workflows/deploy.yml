@@ -1,8 +1,10 @@
-name: Deploy Vite App to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ "main" ]   # 👈 Change to "master" if your repo uses master
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: read
@@ -27,6 +29,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_BASE_PATH: /element-lab-playground/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
